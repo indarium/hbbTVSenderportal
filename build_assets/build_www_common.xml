@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<project name="build www common" basedir="..">
+
+    <property name="PROJ.BUILD_FILES_DIR" value="build_assets" />
+  
+    <!-- CSS files (concatenated) (providing abstract target) -->
+    <target name="concat_css">
+        <concat destfile="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}/${BUILD.PATH_CSS}/${BUILD.COUNT}${BUILD.NAME_ALL_CSS}">
+            <fileset refid="basic_css_fileset"/>
+            <fileset dir="${PROJ.PATH_CSS}" includes="${PROJ.PATH_WWW_DEVICES_CSS}/*.css" />
+        </concat>
+    </target>
+
+    <!-- build version (abstract) -->
+    <target name="get_build_version_prefix">
+        <property name="BUILD.COUNT" value="v${BUILD.APP_VERSION}_${BUILD.TIMESTAMP}_" />
+    </target>
+    
+    <!-- This Target will be called right bevore replacement of String constants (abstract optional) -->
+    <target name="post-replace-hook" depends="common_replace_placeholders">
+        <replace dir="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}">
+            <replacefilter token="@PATH_CONFIG@" value="${BUILD.COUNT}${BUILD.CONFIG_URL}" />
+        </replace>
+    </target>
+
+    <!-- Font files (providing abstract target) -->
+    <target name="copy_font_files">
+    </target>
+
+</project>

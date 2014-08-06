@@ -1,0 +1,70 @@
+$app_width: 1280px;
+$app_height: 720px;
+
+$bg_pixel_dark_url: '../img/bg_pixel_dark.png';
+$bg_pixel_dark: url($bg_pixel_dark_url);
+
+$bg_mabb_url: url('../img/bg_mabb2.jpg') no-repeat;
+
+$hd_icon_width: 34px;
+$hd_icon_height: 22px;
+$hd_on_url: url('../img/hd_on.png') no-repeat;
+$hd_off_url: url('../img/hd_off.png') no-repeat;
+
+$save_area_height: 40px;
+$save_area_width: 60px;
+
+$app_padding_height: 20px;
+$app_padding_width: 40px;
+
+$controlbarHeight: 70px;
+
+$channelLogoHeight: 90px;
+$channelLogoWidth: 160px;
+
+$showLogoHeight: 90px;
+$showLogoWidth: 160px;
+
+$font_size: 20px;
+$font_size_bigger: 25px;
+
+$loader_url: '../img/loader4.png';
+$loader: url($loader_url);
+
+$loader_width: 78px;
+$loader_height: 24px;
+
+$sprite_url: '../img/button_sprite2.png';
+
+$sprite: url($sprite_url);
+
+
+$btn_rewind: $sprite 0px -50px no-repeat;
+$btn_rewind_selected: $sprite 0px 0px no-repeat;
+$btn_rewind_inactive: $sprite 0px -100px no-repeat;
+
+
+$btn_play: $sprite -52px -50px no-repeat;
+$btn_play_selected: $sprite -52px 0px no-repeat;
+$btn_play_inactive: $sprite -52px -100px no-repeat;
+
+
+$btn_pause: $sprite -152px -51px no-repeat;
+$btn_pause_selected: $sprite -152px -1px no-repeat;
+$btn_pause_inactive: $sprite -152px -100px no-repeat;
+
+$btn_replay: $sprite -250px -50px no-repeat;
+$btn_replay_selected: $sprite -250px -1px no-repeat;
+$btn_replay_inactive: $sprite -250px -100px no-repeat;
+
+
+$btn_forward: $sprite -102px -50px no-repeat;
+$btn_forward_selected: $sprite -102px 0px no-repeat;
+$btn_forward_inactive: $sprite -102px -100px no-repeat;
+
+
+$btn_stop: $sprite -200px -50px no-repeat;
+$btn_stop_selected: $sprite -200px 0px no-repeat;
+$btn_stop_inactive: $sprite -200px -100px no-repeat;
+
+$btn_big_pause: $sprite 0px -150px no-repeat;

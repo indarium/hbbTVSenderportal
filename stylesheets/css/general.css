@@ -1,0 +1,145 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none; }
+
+:focus {
+  outline: 0; }
+
+ins {
+  text-decoration: none; }
+
+del {
+  text-decoration: line-through; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+* {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer; }
+
+html {
+  overflow: hidden; }
+
+body {
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  background: white; }
+
+/* APP */
+/******************************************/
+#app {
+  position: fixed;
+  z-index: 96;
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 720px;
+  color: #EFE6FE;
+  overflow: hidden;
+  background-color: transparent; }
+  #app.stopped {
+    background: url("../img/bg_mabb2.jpg") no-repeat; }
+  #app.loading {
+    background-color: #CCCCCC; }
+  #app.loaded {
+    background-color: transparent; }
+
+#loader {
+  display: none;
+  width: 78px;
+  height: 24px;
+  position: absolute;
+  left: 601px;
+  top: 348px;
+  position: absolute;
+  background: url("../img/loader4.png") no-repeat 0px 0px; }
+  #loader.pos1 {
+    background-position: 0px -25px; }
+  #loader.pos2 {
+    background-position: 0px -50px; }
+  #loader.pos3 {
+    background-position: 0px -75px; }
+  #loader.pos4 {
+    background-position: 0px -100px; }
+
+#big_pause_button {
+  background: url("../img/button_sprite2.png") 0px -150px no-repeat;
+  width: 82px;
+  height: 82px;
+  left: 600px;
+  top: 320px;
+  position: absolute;
+  display: none; }
+  #big_pause_button.paused {
+    display: block; }
+
+/* COMMON STYLING */
+/******************************************/
+.backboneTemplate {
+  display: none; }
+
+#Console {
+  z-index: 99;
+  position: absolute;
+  line-height: 21px;
+  width: 500px;
+  height: auto;
+  bottom: 20px;
+  right: 30px;
+  color: white;
+  background-color: #000;
+  opacity: .5;
+  color: #fff;
+  overflow: hidden;
+  display: none; }
+
+#WidgetBody.dev #Console {
+  display: none; }
+
+#version_info {
+  display: none; }
+
+#WidgetBody.dev #version_info {
+  position: absolute;
+  color: #FFFFFF;
+  background-color: #000000;
+  height: 16px;
+  top: 675px;
+  bottom: 5px;
+  left: 65px;
+  font-size: 12px; }
+  #WidgetBody.dev #version_info #buildtimeago {
+    color: yellow;
+    font-size: 10px; }
+  #WidgetBody.dev #version_info #environment_type {
+    text-transform: uppercase;
+    color: green; }
+  #WidgetBody.dev #version_info #branch_name {
+    color: yellow;
+    font-size: 11px; }

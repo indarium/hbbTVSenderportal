@@ -1,0 +1,266 @@
+<?xml version="1.0" ?>
+<project name="build common" basedir="..">
+
+    <target name="build.timestamp">        
+          <script language="javascript">
+          <![CDATA[
+            property = project.setProperty("BUILD.TIMESTAMP",Math.floor((new Date()).getTime()));
+          ]]>
+      </script>
+      <tstamp>
+          <format property="BUILD.TIME" pattern="dd MMM yyyy@HH:mm:ss" locale="en,UK"/>
+      </tstamp>
+      <!-- <echo message="tstamp=${build.timestamp}" file="build-timestamp.properties"/> -->
+      <echo message="tstamp=${BUILD.TIMESTAMP}"/>
+      <echo message="BUILD.TIME=${BUILD.TIME}"/>
+    </target>
+    <target name="init-common-properties" depends="init-properties">
+        <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+        <!-- COMMON PROPERTIES FILE -->
+        <property name="settings_file" value="build_common.properties" />
+        <echo message="Using Properties File: ${settings_file}" />
+        <property file="${PROJ.BUILD_FILES_DIR}/${settings_file}" />
+
+        <fileset id="basic_css_fileset" dir="${PROJ.PATH_CSS}" includes="*.css" />
+
+        <mkdir dir="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}" />
+    </target>
+
+    <!-- Concat app ejs files -->
+    <target name="concat_tpls">
+        <property name="proj.templates" value="${PROJ.PATH_TPLS}" />
+        <property name="proj.templates.release.target" value="${PROJ.PATH_TPLS}/${BUILD.RELEASE_TARGET}" />
+        <property name="build.templates" value="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}/${BUILD.PATH_JS}/${BUILD.COUNT}${BUILD.NAME_ALL_APP_JS}" />
+        
+        <propertyregex override="yes" 
+            property="proj.templates" input="${proj.templates}"
+            regexp="\\" replace="/" global="true"
+        />
+        <propertyregex override="yes" 
+            property="proj.templates.release.target" input="${proj.templates.release.target}"
+            regexp="\\" replace="/" global="true"
+        />
+        
+        <for param="ejs">
+            <path>
+                <fileset dir="${proj.templates}">
+                    <include name="*.ejs"/>
+                </fileset>
+            </path>
+            <sequential>
+                <echo message="proj.templates: ${proj.templates}" />
+                <var name="ejs.escaped" value="@{ejs}" />
+                <propertyregex override="yes" 
+                    property="ejs.escaped" input="@{ejs}"
+                    regexp="\\" replace="/" global="true"
+                />
+                <echo message="ejs.escaped: ${ejs.escaped}" />
+                <echo message="${proj.templates}/(.*)\.ejs" />
+                <propertyregex override="yes" 
+                    property="template" input="${ejs.escaped}"
+                    regexp="${proj.templates}/(.*)\.ejs"
+                    replace="\1"
+                />
+                <echo message="build.templates: ${build.templates}" />
+                <concat destfile="${build.templates}" append="true">
+                    <path path="@{ejs}"/>
+                    <filterchain>
+                        <striplinebreaks/>
+                        <deletecharacters chars="\t"/>
+                        <replaceregex pattern="\'" replace="&quot;" flags="g"/>
+                        <prefixlines prefix="window.JST['${template}'] = '"/>
+                        <suffixlines suffix="';${line.separator}"/>
+                    </filterchain>
+                </concat>
+            </sequential>
+        </for>
+        
+        <for param="ejs">
+            <path>
+                <fileset dir="${proj.templates}">
+                    <include name="${BUILD.RELEASE_TARGET}/*.ejs"/>
+                </fileset>
+            </path>
+            <sequential>
+                <echo message="proj.templates.release.target: ${proj.templates.release.target}" />
+                <var name="ejs.escaped" value="@{ejs}" />
+                <propertyregex override="yes"
+                    property="ejs.escaped" input="@{ejs}"
+                    regexp="\\" replace="/" global="true"
+                />
+                <propertyregex override="yes" 
+                    property="template" input="${ejs.escaped}"
+                    regexp="${proj.templates.release.target}/(.*)\.ejs"
+                    replace="\1"
+                />
+                <concat destfile="${build.templates}" append="true">
+                    <path path="@{ejs}"/>
+                    <filterchain>
+                        <striplinebreaks/>
+                        <deletecharacters chars="\t"/>
+                        <replaceregex pattern="\'" replace="&quot;" flags="g"/>
+                        <prefixlines prefix="window.JST['${template}'] = '"/>
+                        <suffixlines suffix="';${line.separator}"/>
+                    </filterchain>
+                </concat>
+            </sequential>
+        </for>
+    </target>
+
+
+    <!-- App JS files (concatenated) -->
+    <target name="process_app_js">
+        <concat destfile="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}/${BUILD.PATH_JS}/${BUILD.COUNT}${BUILD.NAME_ALL_APP_JS}">
+            <filelist dir="${PROJ.PATH_APP}" files="${BUILD.NAME_JS_MODELS}" />
+            <filelist dir="${PROJ.PATH_APP}" files="${BUILD.NAME_JS_VIEWS}" />
+            <filelist dir="${PROJ.PATH_APP}" files="${BUILD.NAME_JS_MAIN}" />
+        </concat>
+    </target>
+
+    <!-- Images -->
+    <target name="copy_images">
+        <copy todir="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}/${BUILD.PATH_IMG}">
+            <fileset dir="${PROJ.PATH_IMG}"></fileset>
+        </copy>
+    </target>
+
+    <target name="copy_index_files">
+
+        <concat destfile="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}/${BUILD.NAME_INDEX_CEHTML_STRICT}">
+            <filelist dir="${PROJ.PATH_INDEXES}" files="${PROJ.NAME_INDEX_CEHTML_STRICT}, body.html"/>
+        </concat>
+
+        <concat destfile="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}/${BUILD.NAME_INDEX_CEHTML_HTML}">
+            <filelist dir="${PROJ.PATH_INDEXES}" files="${PROJ.NAME_INDEX_CEHTML}, body.html"/>
+        </concat>
+
+        <concat destfile="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}/${BUILD.NAME_INDEX_CEHTML}">
+            <filelist dir="${PROJ.PATH_INDEXES}" files="${PROJ.NAME_INDEX_CEHTML}, body.html"/>
+        </concat>
+
+        <concat destfile="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}/${BUILD.NAME_INDEX_HBBTV_HTML}">
+            <filelist dir="${PROJ.PATH_INDEXES}" files="${PROJ.NAME_INDEX_HBBTV}, body.html"/>
+        </concat>
+
+    </target>
+
+    
+
+    <!-- **********  ABSTRACT Targets: have to be implemented in other file **********   -->
+
+    <target name="init-properties">
+        <fail message="Missing target: Please implement 'init-properties' to provide correct implementation!"/>
+    </target>
+
+    <!-- CSS files (concatenated) (abstract) -->
+    <target name="concat_css">
+      <concat destfile="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}/${BUILD.PATH_CSS}/v_${BUILD.COUNT}${BUILD.NAME_ALL_CSS}">
+        <fileset refid="basic_css_fileset"/>
+      </concat>
+    </target>
+
+    <!-- Font files (abstract) -->
+    <target name="copy_font_files">
+        <fail message="Missing target: 'copy_font_files' to provide correct implementation!"/>
+    </target>
+    
+    <!-- Font files (abstract) -->
+    <target name="inject_js" description="injects JS">    
+    </target>
+
+    <!-- env files (abstract) -->
+    <target name="build_env_files">
+        <fail message="Missing target: 'build_env_files' to provide correct implementation!"/>
+    </target>
+
+    <!-- This Target will be called right bevor build starts (abstract optional) -->
+    <target name="cleanup-hook">
+        <delete failonerror="false">
+            <fileset dir="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}/${BUILD.ENV}"/>
+            <fileset dir="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}/${BUILD.PATH_CSS}" includes="**/*.css"/>
+            <fileset dir="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}/${BUILD.PATH_JS}" includes="**/*.js"/>
+            <fileset dir="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}" includes="*.*html*,*.js"/> 
+        </delete>
+    </target> 
+
+    <!-- *****************************************************************************   -->
+
+    <!-- **********  ABSTRACT OPTIONAL HOOK Targets: can be implemented in other file **********   -->
+
+
+    <!-- This Target will be called right bevore replacement of String constants (abstract optional) -->
+    <target name="pre-replace-hook">
+        <echo message="..nothing to do here.."/>
+    </target>
+
+    <!-- This Target will be called right after the common build finished (abstract optional) -->
+    <target name="post-build-finish-hook" depends="common_replace_placeholders">
+        <echo message="..nothing to do here.."/>
+    </target>
+
+    <!-- This Target will be called right bevore replacement of String constants (abstract optional) -->
+    <target name="post-replace-hook" depends="common_replace_placeholders">
+        <echo message="..nothing to do here.."/>
+    </target>
+
+    <!-- This Target will be called right bevore replacement of String constants (abstract optional) -->
+    <target name="clean-build-hook" depends="post-build-finish-hook">
+        <echo message="..nothing to do here.."/>
+    </target>
+
+    <!-- *****************************************************************************   -->
+
+    <!-- Replace Placeholders in all files -->
+    <target name="common_replace_placeholders" depends="pre-replace-hook">
+        <replace dir="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}">
+                <replacefilter token="@CONFIG_URL@" value="${BUILD.CONFIG_URL}" />
+                <replacefilter token="@APP_TITLE@" value="${BUILD.APP_TITLE}" />
+                <replacefilter token="@APP_ID_PREFIX@" value="${BUILD.APP_ID_PREFIX}" />
+                
+                <replacefilter token="@APP_VERSION@" value="${BUILD.APP_VERSION}" />
+                <replacefilter token="@APP_HEIGHT@" value="${PROJ.APP_HEIGHT}" />
+                <replacefilter token="@APP_WIDTH@" value="${PROJ.APP_WIDTH}" />
+                <replacefilter token="@PATH_CSS@" value="${BUILD.PATH_CSS}/${BUILD.COUNT}${BUILD.NAME_ALL_CSS}" />
+                <replacefilter token="@PATH_APP@" value="${BUILD.PATH_JS}/${BUILD.COUNT}${BUILD.NAME_ALL_APP_JS}" />
+                
+                <replacefilter token="'@ANIMATION_DURATION_NORMAL@'" value="${ANIMATION_DURATION_NORMAL}" />
+                <replacefilter token="'@ANIMATION_DURATION_LOW@'" value="${ANIMATION_DURATION_LOW}" />
+                <replacefilter token="'@ANIMATION_DURATION_POOR@'" value="${ANIMATION_DURATION_POOR}" />
+                <replacefilter token="'@UI_HIDE_TIMEOUT@'" value="${UI_HIDE_TIMEOUT}" />
+                <replacefilter token="'@SEEKING_TIME@'" value="${SEEKING_TIME}" />
+                <replacefilter token="'@BUILD_TIMESTAMP@'" value="${BUILD.TIMESTAMP}" />
+                <replacefilter token="@BUILD.TIME@" value="${BUILD.TIME}" />
+                <replacefilter token="@BUILD_BRANCH_NAME@" value="${BUILD_BRANCH_NAME}" />
+
+                <replacefilter token="@ENABLE_DEBUG_MODE@" value="${ENABLE_DEBUG_MODE}" />
+                <replacefilter token="@API_KEY@" value="${API_KEY}" />
+
+        </replace>
+    </target>
+
+    <!-- COPY & CONCAT FILES TO LOCAL DIRECTORY & REPLACE PLACEHOLDER !! A personal properties files MUST be defined in your IDE !! -->
+    <target
+        name="build"
+        depends='init-common-properties,git.branch.name,get_app_version,build.timestamp,get_build_version_prefix,cleanup-hook,concat_css,process_app_js,concat_tpls,copy_index_files,copy_images,copy_font_files,build_env_files,common_replace_placeholders,inject_js,post-replace-hook,post-build-finish-hook,clean-build-hook'
+        description="Copy and concats all necessary files to local folder and Replace Placeholders">
+    </target>
+    
+    <target name="get_app_version">
+        <propertyregex property="BUILD.APP_VERSION"
+              input="${BUILD_BRANCH_NAME}"
+              regexp="release/(.*)"
+              select="\1"
+              casesensitive="false"
+              defaultValue="${BUILD.DEVELOPMENT_APP_VERSION}" />
+        <echo message="Current BUILD.APP_VERSION: ${BUILD.APP_VERSION}" />
+    </target>
+    
+    <!-- Get GIT Branch name. -->
+    <target name="git.branch.name"> 
+      <exec executable="git" outputproperty="BUILD_BRANCH_NAME">
+        <arg line="rev-parse" />
+        <arg line="--abbrev-ref HEAD" />
+      </exec>
+      <echo message="Current GIT Branch Name is: ${BUILD_BRANCH_NAME}" />
+    </target>
+</project>

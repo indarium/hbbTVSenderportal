@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<project name="build www dev" default="build_www_dev" basedir="..">
+    
+    <import file="build_www_common.xml"/>
+    <import file="build_common.xml"/>
+    
+    <target name="init-properties">
+        <!-- PROPERTIES FILE -->
+        <echo message="BASEDIR: ${basedir}" />
+
+        <property name="dev_settings_file" value="build_www_dev.properties" />
+        <echo message="Using Properties File: ${dev_settings_file}" />
+        <property file="${PROJ.BUILD_FILES_DIR}/${dev_settings_file}" />
+    </target>
+
+    <!-- env files (abstract) -->
+    <target name="build_env_files">
+        <copy todir="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}">
+            <fileset dir="${PROJ.BUILD_FILES_DIR}/${BUILD.ENV}"></fileset>
+        </copy>
+        <move file="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}/${BUILD.CONFIG_URL}" tofile="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}/${BUILD.COUNT}${BUILD.CONFIG_URL}" />
+
+        <replace dir="${BUILD.LOCAL_COMMON_DEPLOY_DIR}/${LOCAL_DEPLOY_DIR}">
+                <replacefilter token="@API_URL@" value="${PROJ.DEV_API_URL}" />
+                <replacefilter token="@STATIC_CONTENT@" value="${PROJ.DEV_STATIC_CONTENT}"/>
+                <replacefilter token="@CDN_PREFIX@" value="${PROJ.DEV_CDN_PREFIX}" />
+                <replacefilter token="@ENVIRONMENT@" value="${PROJ.DEV_ENVIRONMENT}" />
+        </replace>
+    </target>
+    
+    <target name="build_www_dev" depends="build" description="Builds the project by using the common build">
+        
+    </target>
+</project>

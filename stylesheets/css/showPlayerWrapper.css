@@ -1,0 +1,144 @@
+#showPlayerWrapper {
+  position: absolute;
+  bottom: 55px;
+  width: 1080px;
+  left: 100px; }
+  #showPlayerWrapper #channelBroadcastInfoWrapper {
+    background: url("../img/bg_pixel_dark.png") repeat;
+    height: 530px;
+    display: none;
+    text-align: center; }
+    #showPlayerWrapper #channelBroadcastInfoWrapper #channelBroadcastInfo {
+      text-align: center; }
+      #showPlayerWrapper #channelBroadcastInfoWrapper #channelBroadcastInfo h2 {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 42.5px; }
+      #showPlayerWrapper #channelBroadcastInfoWrapper #channelBroadcastInfo table {
+        width: 100%;
+        font-size: 30px;
+        margin-top: 20px; }
+        #showPlayerWrapper #channelBroadcastInfoWrapper #channelBroadcastInfo table td {
+          width: 50%;
+          text-align: left;
+          padding-left: 10px; }
+        #showPlayerWrapper #channelBroadcastInfoWrapper #channelBroadcastInfo table tr td:first-child {
+          text-align: right;
+          padding-right: 10px; }
+    #showPlayerWrapper #channelBroadcastInfoWrapper #channelLogoWrapper {
+      padding-top: 70px; }
+      #showPlayerWrapper #channelBroadcastInfoWrapper #channelLogoWrapper #channelLogo {
+        width: 160px;
+        height: 90px; }
+  #showPlayerWrapper #showInfo {
+    background: url("../img/bg_pixel_dark.png") repeat;
+    height: 130px;
+    padding-left: 40px; }
+    #showPlayerWrapper #showInfo #showLogoWrapper {
+      padding-top: 20px; }
+      #showPlayerWrapper #showInfo #showLogoWrapper #showLogo {
+        width: 160px;
+        height: 90px;
+        float: left;
+        margin-right: 20px;
+        display: none; }
+    #showPlayerWrapper #showInfo #showDetailsWrapper {
+      float: left;
+      width: 840px; }
+      #showPlayerWrapper #showInfo #showDetailsWrapper #showTitle {
+        font-size: 25px; }
+      #showPlayerWrapper #showInfo #showDetailsWrapper #showDescription {
+        font-size: 20px;
+        overflow: hidden;
+        height: 60px; }
+  #showPlayerWrapper #playerProgressBarWrapper {
+    width: 100%;
+    height: 5px; }
+    #showPlayerWrapper #playerProgressBarWrapper #playerProgressBar {
+      background-color: transparent;
+      width: 0%;
+      height: 100%; }
+  #showPlayerWrapper #controlBar {
+    background: url("../img/bg_pixel_dark.png") repeat;
+    width: 100%;
+    height: 70px; }
+    #showPlayerWrapper #controlBar #closeButtonWrapper, #showPlayerWrapper #controlBar #hdsdButtonWrapper {
+      padding-top: 25px;
+      margin-left: 50px;
+      float: left;
+      font-size: 20px; }
+    #showPlayerWrapper #controlBar #showInfoButtonWrapper {
+      padding-top: 25px;
+      float: right;
+      margin-right: 50px;
+      font-size: 20px;
+      display: none; }
+    #showPlayerWrapper #controlBar #hdsdButtonWrapper {
+      margin-left: 25px !important;
+      display: none; }
+      #showPlayerWrapper #controlBar #hdsdButtonWrapper #greenButtonLabel {
+        width: 34px;
+        height: 22px;
+        margin-left: 20px; }
+      #showPlayerWrapper #controlBar #hdsdButtonWrapper #greenButtonLabel.hd_on {
+        background: url("../img/hd_on.png") no-repeat; }
+      #showPlayerWrapper #controlBar #hdsdButtonWrapper #greenButtonLabel.hd_off {
+        background: url("../img/hd_off.png") no-repeat; }
+    #showPlayerWrapper #controlBar #playerControls {
+      width: 400px;
+      margin-left: 470px;
+      padding-top: 10px;
+      position: absolute; }
+      #showPlayerWrapper #controlBar #playerControls .button {
+        float: left;
+        width: 44px;
+        height: 44px;
+        margin-right: 5px; }
+        #showPlayerWrapper #controlBar #playerControls .button#rewindButton {
+          background: url("../img/button_sprite2.png") 0px -50px no-repeat; }
+          #showPlayerWrapper #controlBar #playerControls .button#rewindButton.selected {
+            background: url("../img/button_sprite2.png") 0px 0px no-repeat; }
+        #showPlayerWrapper #controlBar #playerControls .button#playPauseButton {
+          background: url("../img/button_sprite2.png") -152px -51px no-repeat; }
+          #showPlayerWrapper #controlBar #playerControls .button#playPauseButton.selected {
+            background: url("../img/button_sprite2.png") -152px -1px no-repeat; }
+        #showPlayerWrapper #controlBar #playerControls .button#forwardButton {
+          background: url("../img/button_sprite2.png") -102px -50px no-repeat; }
+          #showPlayerWrapper #controlBar #playerControls .button#forwardButton.selected {
+            background: url("../img/button_sprite2.png") -102px 0px no-repeat; }
+      #showPlayerWrapper #controlBar #playerControls.failed #rewindButton {
+        background: url("../img/button_sprite2.png") 0px -100px no-repeat; }
+      #showPlayerWrapper #controlBar #playerControls.failed #playPauseButton {
+        background: url("../img/button_sprite2.png") -152px -100px no-repeat; }
+      #showPlayerWrapper #controlBar #playerControls.failed #forwardButton {
+        background: url("../img/button_sprite2.png") -102px -100px no-repeat; }
+      #showPlayerWrapper #controlBar #playerControls.playing #playPauseButton {
+        background: url("../img/button_sprite2.png") -152px -51px no-repeat; }
+        #showPlayerWrapper #controlBar #playerControls.playing #playPauseButton.selected {
+          background: url("../img/button_sprite2.png") -152px -1px no-repeat; }
+      #showPlayerWrapper #controlBar #playerControls.paused #playPauseButton {
+        background: url("../img/button_sprite2.png") -52px -50px no-repeat; }
+        #showPlayerWrapper #controlBar #playerControls.paused #playPauseButton.selected {
+          background: url("../img/button_sprite2.png") -52px 0px no-repeat !important; }
+      #showPlayerWrapper #controlBar #playerControls.stopped #playPauseButton {
+        background: url("../img/button_sprite2.png") -250px -50px no-repeat; }
+        #showPlayerWrapper #controlBar #playerControls.stopped #playPauseButton.selected {
+          background: url("../img/button_sprite2.png") -250px -1px no-repeat; }
+      #showPlayerWrapper #controlBar #playerControls.stopped #rewindButton {
+        visibility: hidden; }
+      #showPlayerWrapper #controlBar #playerControls.stopped #forwardButton {
+        visibility: hidden; }
+    #showPlayerWrapper #controlBar .colorButton {
+      height: 10px;
+      width: 10px;
+      float: left;
+      margin-right: 8px; }
+      #showPlayerWrapper #controlBar .colorButton#redButton {
+        background-color: #FF0000;
+        margin-top: 7px; }
+      #showPlayerWrapper #controlBar .colorButton#blueButton {
+        background-color: #0000FF;
+        margin-top: 5px; }
+      #showPlayerWrapper #controlBar .colorButton#greenButton {
+        background-color: #00FF00;
+        margin-top: 5px; }

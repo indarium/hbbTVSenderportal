@@ -1,0 +1,58 @@
+var EDUCATION = "education"; 
+var VOD_CONCERT = "vod_concert";
+
+var ERRORTYPE = {
+    FATAL : 'fatal',
+    NORMAL : 'normal',
+    SILENT : 'silent'
+};
+
+ERRORS = {
+    DEFAULT                    : {CODE:100,OPTIONS:{TYPE:ERRORTYPE.FATAL}},
+    JSON_API: {
+        SESSION                : {CODE:1000,OPTIONS:{TYPE:ERRORTYPE.FATAL}},
+        SESSION_POLLING        : {CODE:1000,OPTIONS:{TYPE:ERRORTYPE.SILENT}},
+        PROFILE                : {CODE:1100,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+        FAVOURITES             : {CODE:1200,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+        DISCONNECT             : {CODE:1300,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+        RESEND_ACTIVATION_MAIL : {CODE:1400,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+        STREAM_URLS            : {CODE:1500,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+        CONCERTS               : {CODE:1600,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+        PIECES                 : {CODE:1700,OPTIONS:{TYPE:ERRORTYPE.NORMAL}}
+    },
+    STATIC: {
+        MANIFEST: {
+            MAIN              : {CODE:2000,OPTIONS:{TYPE:ERRORTYPE.FATAL}},
+            SEASONS           : {CODE:2010,OPTIONS:{TYPE:ERRORTYPE.FATAL}},
+            INTERVIEWS        : {CODE:2020,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+            GENRES            : {CODE:2030,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+            EPOCHS            : {CODE:2040,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+            ARTISTS:{
+                DEFAULT       : {CODE:2050,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+                COMPOSERS     : {CODE:2051,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+                CONDUCTORS    : {CODE:2052,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+                SOLOISTS      : {CODE:2053,OPTIONS:{TYPE:ERRORTYPE.NORMAL}}   
+            }
+        },
+        LABELS                : {CODE:2100,OPTIONS:{TYPE:ERRORTYPE.FATAL}},
+        CONCERT: {
+            DEFAULT           : {CODE:2200,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+            EDUCATION         : {CODE:2210,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+            MOVIE             : {CODE:2220,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+            LIVE              : {CODE:2230,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+            ARCHIVE           : {CODE:2240,OPTIONS:{TYPE:ERRORTYPE.NORMAL}}
+        },
+        PIECE: {
+            DEFAULT           : {CODE:2300,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+            EDUCATION         : {CODE:2310,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+            MOVIE             : {CODE:2320,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+            LIVE              : {CODE:2330,OPTIONS:{TYPE:ERRORTYPE.NORMAL}}   
+        },
+        CATEGORY: {
+            DEFAULT           : {CODE:2400,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+            EPOCH             : {CODE:2410,OPTIONS:{TYPE:ERRORTYPE.NORMAL}},
+            GENRES            : {CODE:2420,OPTIONS:{TYPE:ERRORTYPE.NORMAL}}   
+        },
+    }
+};
+

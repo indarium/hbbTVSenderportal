@@ -1,0 +1,210 @@
+@import 'vars.scss';
+
+$showInfoPadding: 40px;
+
+#showPlayerWrapper{
+    position: absolute;
+    bottom: 55px;
+    width: $app_width - 2*$save_area_width - 2*$app_padding_width;
+    left: $save_area_width + $app_padding_width;
+    #channelBroadcastInfoWrapper{
+        background: $bg_pixel_dark repeat;
+        height: 530px;
+        display: none;
+        text-align: center;
+        #channelBroadcastInfo{
+            text-align: center;
+            h2{
+                margin-top: 40px;
+                text-align: center;
+                font-size: 1.7*$font_size_bigger;
+            }
+            table{
+                td{
+                    width: 50%;
+                    text-align: left;
+                    padding-left: 10px;
+                }
+                tr td:first-child{
+                    text-align: right;
+                    padding-right: 10px;
+                }
+                width: 100%;
+                font-size: 1.2*$font_size_bigger;
+                margin-top: 20px;
+            }
+        }
+        #channelLogoWrapper{
+            padding-top: 70px;
+            #channelLogo{
+                width: $showLogoWidth;
+                height: $showLogoHeight;
+            }
+        }
+    }
+    #showInfo{
+        background: $bg_pixel_dark repeat;
+        height: 130px;
+        padding-left: $showInfoPadding;
+        #showLogoWrapper{
+            padding-top: 20px;
+            #showLogo{
+                width: $showLogoWidth;
+                height: $showLogoHeight;
+                float: left;
+                margin-right: 20px;
+                display: none;
+            }
+        }  
+        #showDetailsWrapper{
+            float: left;
+            width: $app_width - 2*$save_area_width - 2*$app_padding_width - $showLogoWidth - 2*$showInfoPadding;
+            #showTitle{
+                font-size: $font_size_bigger;
+            }
+            #showDescription{
+                font-size: $font_size;
+                overflow: hidden;
+                height: 60px;
+            }
+        }
+        
+    }
+    #playerProgressBarWrapper{
+        width: 100%;
+        height: 5px;
+        #playerProgressBar{
+            background-color: transparent;
+            width: 0%;
+            height: 100%;
+        }
+    }
+    #controlBar{
+        background: $bg_pixel_dark repeat;
+        width: 100%;
+        height: $controlbarHeight;
+        #closeButtonWrapper, #hdsdButtonWrapper{
+            padding-top: 25px;
+            margin-left: 50px;
+            float: left;
+            font-size: $font_size;
+        }
+        #showInfoButtonWrapper{
+            padding-top: 25px;
+            float: right;
+            margin-right: 50px;
+            font-size: $font_size;
+            display: none;
+        }
+        #hdsdButtonWrapper{
+            margin-left: 25px !important;
+            display: none;
+            
+            #greenButtonLabel{
+                width: $hd_icon_width;
+                height: $hd_icon_height;
+                margin-left: 20px;
+            }
+            #greenButtonLabel.hd_on{
+                background: $hd_on_url;
+            }
+            #greenButtonLabel.hd_off{
+                background: $hd_off_url;
+            }
+        }
+        #playerControls{
+            width: 400px;
+            margin-left: 470px;
+            padding-top: 10px;
+            position: absolute;
+            .button{
+                float: left;
+                width: 44px;
+                height: 44px;
+                margin-right: 5px;
+                &#rewindButton{
+                    background: $btn_rewind;
+                    &.selected{
+                       background: $btn_rewind_selected;
+                    }
+                }
+                &#playPauseButton{
+                    background: $btn_pause;
+                    &.selected{
+                       background: $btn_pause_selected;
+                    }
+                }
+                &#forwardButton{
+                    background: $btn_forward;
+                    &.selected{
+                       background: $btn_forward_selected;
+                    }
+                }
+            }
+            &.failed{
+                
+                #rewindButton{
+                    background: $btn_rewind_inactive;
+
+                }
+                #playPauseButton{
+                    background: $btn_pause_inactive;
+
+                }
+                #forwardButton{
+                    background: $btn_forward_inactive;
+                }
+            }
+            &.playing{
+                
+                #playPauseButton{
+                    background: $btn_pause;
+                    &.selected{
+                       background: $btn_pause_selected;
+                    }
+                }
+            }
+            &.paused{
+                #playPauseButton{
+                    background: $btn_play;
+                    &.selected{
+                       background: $btn_play_selected !important;
+                    }
+                }
+            }
+            &.stopped{
+                #playPauseButton{
+                    background: $btn_replay;
+                    &.selected{
+                       background: $btn_replay_selected;
+                    }
+                }
+                #rewindButton{
+                    visibility: hidden;
+                }
+                #forwardButton{
+                    visibility: hidden;
+                }
+            }
+        }
+        .colorButton{
+            height: 10px;
+            width: 10px;
+            float: left;
+            margin-right: 8px;
+            
+            &#redButton{
+               background-color: #FF0000;
+               margin-top: 7px;
+            }
+            &#blueButton{
+               background-color: #0000FF;
+               margin-top: 5px;
+            }
+            &#greenButton{
+               background-color: #00FF00;
+               margin-top: 5px;
+            }
+        }
+    }
+}

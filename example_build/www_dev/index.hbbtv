@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//HbbTV//1.1.1//EN" "http://www.hbbtv.org/dtd/HbbTV-1.1.1.dtd">
+<html lang="de" xml:lang="de" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="application/vnd.hbbtv.xhtml+xml; charset=UTF-8" http-equiv="content-type"/>
+    <meta content="de" http-equiv="Content-Language"/>
+    <title>Senderportal</title>
+    <link type="text/css" rel="stylesheet" href="css/v1.0.0_1407330897391_all.css" />
+</head>
+<body id="WidgetBody" class="dev" onload="App.init();">
+      <!-- <object id="video_broadcast" type="video/broadcast" style="display: none;position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object> -->
+  <object id="video" type="video/mp4" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;"></object>
+  <object id="appmgr" type="application/oipfApplicationManager" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
+  <object id="oipfcfg" type="application/oipfConfiguration" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
+  <div id="app" class="loading">
+    <div id="loader">
+  </div>
+    <div id="big_pause_button"/>
+    <div id="stationLogoWrapper"><img id="stationLogo" src="" alt="" /></div>
+    <div id="showPlayerWrapper">
+      <div id="channelBroadcastInfoWrapper">
+        <div id="channelLogoWrapper">
+          <img src="" alt="" id="channelLogo" />
+        </div>
+        <div id="channelBroadcastInfo"></div>
+      </div>
+      <div id="showInfo">
+        <div id="showLogoWrapper"><img src="" alt="" id="showLogo" /></div>
+        <div id="showDetailsWrapper">
+          <div id="showTitle">Lade Sendung...</div>
+          <div id="showDescription"></div>
+        </div>
+      </div>
+      <div id="playerProgressBarWrapper">
+        <div id="playerProgressBar"></div>
+      </div>
+      <div id="controlBar">
+        <div id="closeButtonWrapper"><div id="redButton" class="colorButton"></div><img id="bbmv_logo" src="img/bbmv_logo.png" alt="" /></div>
+        <div id="hdsdButtonWrapper"><div id="greenButton" class="colorButton"></div><div id="greenButtonLabel" class="hd_off"></div></div>
+        <div id="playerControls" class="playing">
+          <div id="rewindButton" class="button"></div>
+          <div id="playPauseButton" class="button"></div>
+          <div id="forwardButton" class="button"></div>
+        </div>
+        <div id="showInfoButtonWrapper"><div id="blueButton" class="colorButton"></div><span id="blueButtonLabel">Sendetermine</span></div>
+      </div>
+    </div>
+  </div>
+  <div id="version_info">
+    <span id="environment_type">dev</span><span id="branch_name"> (develop) </span>:<span id="buildtime">06 Aug 2014@15:14:57</span> <span id="buildtimeago"></span>
+    <span id="player_debug_info"></span>
+    <div id="debug_view" style="display: none;"></div>
+  </div>
+  <div id="Console"></div>
+  <script src="v1.0.0_1407330897391_config.js"></script>
+  <script src="js/v1.0.0_1407330897391_app.js"></script>
+</body>
+</html>

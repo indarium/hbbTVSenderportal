@@ -1,0 +1,13 @@
+@import 'vars.scss';
+
+#stationLogoWrapper{
+    float: right;
+    display: none;
+
+    #stationLogo{
+        width: $channelLogoWidth;
+        height: $channelLogoHeight;
+        margin-top: $save_area_height + $app_padding_height;
+        margin-right: $save_area_width + $app_padding_width;
+    }
+}
