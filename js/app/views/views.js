@@ -81,7 +81,7 @@ Views.initWithStation = function(_station){
     document.getElementById('channelLogo').src = _station.stationLogoUrl;
     document.getElementById('showInfoButtonWrapper').style.display = 'block';
 
-    if(_station.showVideoHDUrl != ''){
+    if(_station.showVideoHDUrl && _station.showVideoHDUrl != ''){
         this.qualityCanBeSwitched = true;
         document.getElementById('hdsdButtonWrapper').style.display = 'block';
     }
