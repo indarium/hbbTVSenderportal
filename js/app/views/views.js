@@ -290,7 +290,7 @@ Views.toggleQuality = function(){
     else{
         this.hd_on = true;
         this.greenButtonLabel.className = "hd_on";
-        this.player.playVideoURL(this.station.showVideoSDUrl,lastPosition);
+        this.player.playVideoURL(this.station.showVideoHDUrl,lastPosition);
     }
     if(this.player.canSeekImmediatelly)
         this.player.seek_if_needed();
