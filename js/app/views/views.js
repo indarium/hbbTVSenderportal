@@ -264,7 +264,7 @@ Views.setupError = function(_isAPIError){
     App.hideLoader();
     if(_isAPIError){
         App.views.showTitle.innerHTML = "Die Sendung konnte nicht geladen werden.";
-        App.views.showDescription.innerHTML = "Bitte versuchen Sie es später noch einmal.";
+        App.views.showDescription.innerHTML = "Bitte versuchen Sie es sp&auml;ter noch einmal.";
         App.views.showLogo.style.display = 'none';
     }
     document.getElementById('app').className = "stopped";
