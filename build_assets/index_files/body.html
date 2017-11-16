@@ -1,11 +1,9 @@
-  <!-- <object id="video_broadcast" type="video/broadcast" style="display: none;position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object> -->
   <object id="video" type="video/mp4" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;"></object>
   <object id="appmgr" type="application/oipfApplicationManager" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
   <object id="oipfcfg" type="application/oipfConfiguration" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
   <div id="app" class="loading">
-    <div id="loader">
-  </div>
-    <div id="big_pause_button"/>
+    <div id="loader"></div>
+    <div id="big_pause_button"></div>
     <div id="stationLogoWrapper"><img id="stationLogo" src="" alt="" /></div>
     <div id="showPlayerWrapper">
       <div id="channelBroadcastInfoWrapper">
@@ -42,7 +40,7 @@
     <div id="debug_view" style="display: none;"></div>
   </div>
   <div id="Console"></div>
-  <script src="@CDN_PREFIX@@PATH_CONFIG@"></script>
-  <script src="@CDN_PREFIX@@PATH_APP@"></script>
+  <script src="@CDN_PREFIX@@PATH_CONFIG@" type="text/javascript"></script>
+  <script src="@CDN_PREFIX@@PATH_APP@" type="text/javascript"></script>
 </body>
 </html>

@@ -1,1 +1,4 @@
+build/*
+.sass-cache/*
+stylesheets/.sass-cache/
 .idea

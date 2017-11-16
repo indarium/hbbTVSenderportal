@@ -81,7 +81,7 @@ Views.initWithStation = function(_station){
     document.getElementById('channelLogo').src = _station.stationLogoUrl;
     document.getElementById('showInfoButtonWrapper').style.display = 'block';
 
-    if(_station.showVideoHDUrl != ''){
+    if(_station.showVideoHDUrl && _station.showVideoHDUrl != ''){
         this.qualityCanBeSwitched = true;
         document.getElementById('hdsdButtonWrapper').style.display = 'block';
     }
@@ -264,7 +264,7 @@ Views.setupError = function(_isAPIError){
     App.hideLoader();
     if(_isAPIError){
         App.views.showTitle.innerHTML = "Die Sendung konnte nicht geladen werden.";
-        App.views.showDescription.innerHTML = "Bitte versuchen Sie es später noch einmal.";
+        App.views.showDescription.innerHTML = "Bitte versuchen Sie es sp&auml;ter noch einmal.";
         App.views.showLogo.style.display = 'none';
     }
     document.getElementById('app').className = "stopped";
@@ -290,7 +290,7 @@ Views.toggleQuality = function(){
     else{
         this.hd_on = true;
         this.greenButtonLabel.className = "hd_on";
-        this.player.playVideoURL(this.station.showVideoSDUrl,lastPosition);
+        this.player.playVideoURL(this.station.showVideoHDUrl,lastPosition);
     }
     if(this.player.canSeekImmediatelly)
         this.player.seek_if_needed();

@@ -10,6 +10,6 @@ var ANIMATION_DURATION_POOR     = 0;      // in ms
 var UI_HIDE_TIMEOUT             = 5000;              // in ms
 var SEEKING_TIME                = 60;                 // in s
 var ENVIRONMENT                 = 'dev';
-var BUILD_TIMESTAMP             = 1407330897391;              // unix timestamp
-var BUILD_BRANCH_NAME           = "develop";            // name of branch in which the build was made
+var BUILD_TIMESTAMP             = 1415112695638;              // unix timestamp
+var BUILD_BRANCH_NAME           = "master";            // name of branch in which the build was made
 // new line is important

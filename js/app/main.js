@@ -10,10 +10,16 @@ var App = {
     showLogger: @ENABLE_DEBUG_MODE@,
     videoIsLoading: true,
     uiIsShowing: true,
+    inDevelopmentBrowser: false,
 };
 
 App.init = function(){
     
+    if(document.URL.indexOf(".html") > 0){
+      App.inDevelopmentBrowser = true;
+      App.setupDevelopmentBrowser();
+    }
+
     var appmgrObject = document.getElementById('appmgr');
     var stationID = App.getRequestedStation();
     App.trackAppStart(stationID);
@@ -23,14 +29,19 @@ App.init = function(){
     App.debug("UserAgent: "+navigator.userAgent);
     App.registerKeyEventListener();
 
+
+        
+
     App.loadStationInfo(stationID, App.stationInfoLoadedCallback,App.stationInfoLoadedFailedCallback);
-    if(appmgrObject.getOwnerApplication)
+    
+    if(!App.inDevelopmentBrowser && appmgrObject.getOwnerApplication)
         App.manager = appmgrObject.getOwnerApplication(document);
     if(App.manager){
         App.manager.show && App.manager.show();
         App.manager.activate && App.manager.activate();
     }
-    App.setKeyset();
+    if(!App.inDevelopmentBrowser)
+      App.setKeyset();
 };
 
 App.trackAppStart = function(_stationID){
@@ -205,6 +216,35 @@ App.goToPortal = function(_link){
   }
   return true;
 };
+App.setupDevelopmentBrowser = function(){
+    var video_object = document.getElementById("video");
+    var html5_video = document.createElement("video");
+    html5_video.setAttribute("id", "video");
+    html5_video.addEventListener("canplay",function(){
+          App.views.player.buffering_completed();
+          App.views.setupPlaying();
+    }, false);
+    html5_video.addEventListener("loadstart",function(){
+          App.views.player.buffering_started();
+    }, false);
+    html5_video.addEventListener("ended",function(){
+          App.views.player.ended();
+    }, false);
+    html5_video.addEventListener("error",function(){
+          App.views.player.error();
+    }, false);
+    html5_video.addEventListener("timeupdate",function(_event){
+          App.views.player.timeupdate(_event.target.currentTime*1000);
+    }, false);
+    html5_video.addEventListener("durationchange",function(_event){
+          App.views.player.durationupdate(_event.target.duration*1000);
+    }, false);
+    video_object.parentNode.replaceChild(html5_video, video_object);
+    html5_video.style.width = "1280px";
+    html5_video.style.height = "720px";
+    VK_BLUE = 66; // match 'B'
+    VK_GREEN = 71; // match 'G'
+};
 App.showLoader = function(){
     App.views.loader.show();
 };
@@ -223,5 +263,6 @@ App.exit = function(){
         }
       } catch (e) {
         App.debug('Cannot destroy application');
+        window.location = "http://application.ses-ps.com/Senderportal-BB-MV/index.html";
       }
 };

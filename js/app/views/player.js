@@ -27,7 +27,14 @@ Player.playVideoURL = function(_url,_seekPosition){
     App.debug("Playing URL: "+_url);
     //this.video.data = "http://itv.ard.de/video/timecode.php/video.mp4";
     //this.video.type = "video/mp4";
-    this.video.data = _url;
+    if(!App.inDevelopmentBrowser)
+        this.video.data = _url;
+    else{
+        //HTML5 Player
+        this.video.src = _url;
+        this.video.type = "video/mp4";
+    }
+
     this.play();
     this.playing = true;
 };
@@ -40,7 +47,12 @@ Player.play = function(){
 
 Player.pause = function(){
     App.debug("Player pause");
-    this.video.play(0);
+    if(!App.inDevelopmentBrowser)
+        this.video.play(0);
+    else{
+        //HTML5 Player
+        this.video.pause();
+    }
     this.playing = false;
 };
 Player.play_pause = function(){
@@ -75,7 +87,14 @@ Player.seek_forward = function(){
     if(skip_to > this.duration){
         skip_to = this.duration-1;
     }
-    this.seek(skip_to);
+    if(!App.inDevelopmentBrowser){
+        this.seek(skip_to);
+    }
+    else{
+        this.video.currentTime = skip_to;
+    }
+    
+
 };
 
 Player.seek_backward= function(){
@@ -84,7 +103,12 @@ Player.seek_backward= function(){
     if(skip_to < 0){
         skip_to = 0;
     }
-    this.seek(skip_to);
+    if(!App.inDevelopmentBrowser){
+        this.seek(skip_to);
+    }
+    else{
+        this.video.currentTime = skip_to;
+    }
 };
 
 

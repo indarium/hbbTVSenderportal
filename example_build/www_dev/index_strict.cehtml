@@ -4,18 +4,16 @@
 <head>
   <meta http-equiv="content-type" content="application/ce-html+xml; charset=UTF-8"/>
   <title>Senderportal</title>
-  <link rel='stylesheet' type='text/css' href='css/v1.0.0_1407330897391_all.css' />
+  <link rel='stylesheet' type='text/css' href='css/v1.0.0_1415112695638_all.css' />
 </head>
 <body id="WidgetBody" class="dev" onload="App.init();">
 
-  <!-- <object id="video_broadcast" type="video/broadcast" style="display: none;position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object> -->
   <object id="video" type="video/mp4" style="position: absolute; left: 0px; top: 0px; width: 1280px; height: 720px;"></object>
   <object id="appmgr" type="application/oipfApplicationManager" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
   <object id="oipfcfg" type="application/oipfConfiguration" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
   <div id="app" class="loading">
-    <div id="loader">
-  </div>
-    <div id="big_pause_button"/>
+    <div id="loader"></div>
+    <div id="big_pause_button"></div>
     <div id="stationLogoWrapper"><img id="stationLogo" src="" alt="" /></div>
     <div id="showPlayerWrapper">
       <div id="channelBroadcastInfoWrapper">
@@ -47,12 +45,12 @@
     </div>
   </div>
   <div id="version_info">
-    <span id="environment_type">dev</span><span id="branch_name"> (develop) </span>:<span id="buildtime">06 Aug 2014@15:14:57</span> <span id="buildtimeago"></span>
+    <span id="environment_type">dev</span><span id="branch_name"> (master) </span>:<span id="buildtime">04 Nov 2014@15:51:35</span> <span id="buildtimeago"></span>
     <span id="player_debug_info"></span>
     <div id="debug_view" style="display: none;"></div>
   </div>
   <div id="Console"></div>
-  <script src="v1.0.0_1407330897391_config.js"></script>
-  <script src="js/v1.0.0_1407330897391_app.js"></script>
+  <script src="v1.0.0_1415112695638_config.js" type="text/javascript"></script>
+  <script src="js/v1.0.0_1415112695638_app.js" type="text/javascript"></script>
 </body>
 </html>
