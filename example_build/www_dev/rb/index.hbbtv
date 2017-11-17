@@ -36,11 +36,13 @@ The main page should have application manager, and should call show() at onload(
 
 <!-- the logical HbbTV Application graphic plane is 1280px horizontally by 720px vertically
 So the every content should be draw in 1280 * 720 -->
-<div style="left: 0px; top: 0px; width: 1280px; height: 720px;  position:absolute; background-color: #F7E9E9; border:1px solid #c33;  z-index:-1;"></div>
+<!-- <div style="left: 0px; top: 0px; width: 1280px; height: 720px;  position:absolute; background-color: #F7E9E9; border:1px solid #c33;  z-index:-1;">
+</div>
+-->
 
 <!-- Graphic safe area(Recommend), 1024 * 648 -->
 <div id="divGraphic" style="left: 128px; top: 36px; width: 1024px; height: 648px; position:absolute; z-index:1;">
-	<img src="./img/redbutton.png" style="right:40px;bottom:20px;position:absolute;width:200px"/>
+	<img src="./img/redbutton.png" style="right:40px;bottom:20px;position:absolute;width:100px"/>
 </div>
 
 </body>
